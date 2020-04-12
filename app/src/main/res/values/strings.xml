@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">bellaria</string>
+    <string name="txv_user">Usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="passwordAgain">Repetir Contraseña</string>
+    <string name="btn_login">Iniciar sesión</string>
+    <string name="singUp">Registrarse</string>
+    <string name="btn_return">Volver</string>
+    <string name="nameBusiness">Nombre empresa</string>
+    <string name="location">Localización</string>
+    <string name="email">Email</string>
+
+</resources>
