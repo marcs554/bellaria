@@ -12,9 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PanelCliente"></activity>
+        <activity
+            android:name=".ClienteDashboard"
+            android:label="@string/title_activity_cliente_dashboard" />
         <activity android:name=".Registro" />
-        <activity android:name=".InicioCliente" />
         <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

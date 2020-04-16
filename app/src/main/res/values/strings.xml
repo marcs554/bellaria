@@ -9,5 +9,10 @@
     <string name="nameBusiness">Nombre empresa</string>
     <string name="location">Localización</string>
     <string name="email">Email</string>
+    <string name="title_activity_cliente_dashboard">ClienteDashboard</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="button_logout">Desconectar</string>
 
 </resources>

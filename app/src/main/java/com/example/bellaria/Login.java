@@ -11,8 +11,10 @@ import android.widget.Toast;
 
 import com.example.bellaria.model.Clientes;
 import com.example.bellaria.network.ClienteService;
+import com.example.bellaria.network.EstadoConexion;
 import com.example.bellaria.network.RetrofitInstancia;
 
+import java.io.Serializable;
 import java.util.List;
 
 import retrofit2.Call;
@@ -24,6 +26,8 @@ public class Login extends AppCompatActivity {
     private EditText usuario;
     private EditText password;
 
+    private static final String url = "https://bellaria.herokuapp.com/";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,42 +38,46 @@ public class Login extends AppCompatActivity {
         final Button login = findViewById(R.id.btn_login);
         final TextView signUp = (TextView) findViewById(R.id.txv_signup);
 
-        login.setOnClickListener(v -> login(usuario.toString(), password.toString()));
-        signUp.setOnClickListener( v -> signUp());
+        login.setOnClickListener(v -> login(usuario.getText().toString(),
+                password.getText().toString()));
+        signUp.setOnClickListener(v -> signUp());
     }
 
+    /**
+     *
+     * @param usuario
+     * @param password
+     */
     private void login(String usuario, String password) {
-        ClienteService clienteService = RetrofitInstancia.retrofitllamada().create(ClienteService.class);
+        if(!EstadoConexion.checkConnectionServer(url))
+            Toast.makeText(Login.this, "Servidor no disponible", Toast.LENGTH_LONG).show();
+        else {
 
-        Call<List<Clientes>> call = clienteService.iniciarSesion(usuario,password);
+        ClienteService clienteService = RetrofitInstancia.retrofitllamada(url).create(ClienteService.class);
+
+        Call<List<Clientes>> call = clienteService.iniciarSesion(usuario, password);
         call.enqueue(new Callback<List<Clientes>>() {
             @Override
             public void onResponse(Call<List<Clientes>> call, Response<List<Clientes>> response) {
-                if(!response.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), "No hay conexión con el servidor\nCódigo: "
-                            + response.code(), Toast.LENGTH_SHORT).show();
-                    return;
-                }
 
-               if(response.body().isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "email y contraseña incorrectos", Toast.LENGTH_LONG).show();
-                    return;
-                }
+                List<Clientes> listDataUser = response.body();
 
-                Toast.makeText(getApplicationContext(), "CORRECTO", Toast.LENGTH_LONG).show();
+                Intent panelCliente = new Intent(getApplicationContext(), ClienteDashboard.class);
+                panelCliente.putExtra("DataUser", (Serializable) listDataUser);
+                startActivityForResult(panelCliente, 0);
             }
 
             @Override
             public void onFailure(Call<List<Clientes>> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
-                t.printStackTrace();
+                Toast.makeText(getApplicationContext(), "Usuario y contraseña incorrectos", Toast.LENGTH_LONG).show();
             }
         });
-
-        /*Intent intent = new Intent(this, PanelCliente.class);
-        startActivity(intent);*/
+        }
     }
 
+    /**
+     *
+     */
     private void signUp() {
         Intent registrar = new Intent(this, Registro.class);
         startActivity(registrar);

@@ -1,14 +1,15 @@
 package com.example.bellaria.model;
 
-public class Clientes {
+import java.io.Serializable;
+
+public class Clientes implements Serializable {
     private int id;
     private String nombreEmpresa;
     private String localizacion;
     private String email;
     private String password;
 
-    public Clientes() {
-    }
+    public Clientes() {}
 
     public Clientes(int id, String nombre, String localizacion, String email, String password) {
         this.id = id;
@@ -34,9 +35,7 @@ public class Clientes {
         this.nombreEmpresa = nombreEmpresa;
     }
 
-    public String getLocalizacion() {
-        return localizacion;
-    }
+    public String getLocalizacion() { return localizacion; }
 
     public void setLocalizacion(String localizacion) {
         this.localizacion = localizacion;

@@ -1,6 +1,8 @@
 package com.example.bellaria.model;
 
-public class Productos {
+import java.io.Serializable;
+
+public class Productos implements Serializable {
 
     private int id;
     private String nombre;
