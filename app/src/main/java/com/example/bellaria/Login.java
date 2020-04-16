@@ -10,9 +10,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bellaria.model.Clientes;
-import com.example.bellaria.network.ClienteService;
-import com.example.bellaria.network.EstadoConexion;
-import com.example.bellaria.network.RetrofitInstancia;
+import com.example.bellaria.services.ClienteService;
+import com.example.bellaria.services.EstadoConexion;
+import com.example.bellaria.services.RetrofitInstancia;
 
 import java.io.Serializable;
 import java.util.List;
@@ -28,6 +28,9 @@ public class Login extends AppCompatActivity {
 
     private static final String url = "https://bellaria.herokuapp.com/";
 
+    /**
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,39 +47,45 @@ public class Login extends AppCompatActivity {
     }
 
     /**
+     * Cuando el usuario accione el boton "iniciar sesión" se cargará este metodo para
+     * comprobar si el usuario y contraseña son validos.
      *
      * @param usuario
      * @param password
      */
     private void login(String usuario, String password) {
-        if(!EstadoConexion.checkConnectionServer(url))
+        /**
+         * Se comprobará antes si hay conexión con el servidor, si no la hay se lanzará un Toast
+         * avisando al usuario de que no hay conexión al servidor.
+         */
+        if (!EstadoConexion.checkConnectionServer(url))
             Toast.makeText(Login.this, "Servidor no disponible", Toast.LENGTH_LONG).show();
         else {
+            ClienteService clienteService = RetrofitInstancia.retrofitllamada(url).create(ClienteService.class);
 
-        ClienteService clienteService = RetrofitInstancia.retrofitllamada(url).create(ClienteService.class);
+            Call<List<Clientes>> call = clienteService.iniciarSesion(usuario, password);
+            call.enqueue(new Callback<List<Clientes>>() {
+                @Override
+                public void onResponse(Call<List<Clientes>> call, Response<List<Clientes>> response) {
 
-        Call<List<Clientes>> call = clienteService.iniciarSesion(usuario, password);
-        call.enqueue(new Callback<List<Clientes>>() {
-            @Override
-            public void onResponse(Call<List<Clientes>> call, Response<List<Clientes>> response) {
+                    List<Clientes> listDataUser = response.body();
 
-                List<Clientes> listDataUser = response.body();
+                    Intent panelCliente = new Intent(getApplicationContext(), ClienteDashboard.class);
+                    panelCliente.putExtra("DataUser", (Serializable) listDataUser);
+                    startActivityForResult(panelCliente, 0);
+                }
 
-                Intent panelCliente = new Intent(getApplicationContext(), ClienteDashboard.class);
-                panelCliente.putExtra("DataUser", (Serializable) listDataUser);
-                startActivityForResult(panelCliente, 0);
-            }
-
-            @Override
-            public void onFailure(Call<List<Clientes>> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Usuario y contraseña incorrectos", Toast.LENGTH_LONG).show();
-            }
-        });
+                @Override
+                public void onFailure(Call<List<Clientes>> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(), "Usuario y contraseña incorrectos",
+                            Toast.LENGTH_LONG).show();
+                }
+            });
         }
     }
 
     /**
-     *
+     * Si el usuario acciona el TextView "Registrarse" se pasará al activity "activity_registro"
      */
     private void signUp() {
         Intent registrar = new Intent(this, Registro.class);

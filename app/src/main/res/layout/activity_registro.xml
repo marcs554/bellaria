@@ -75,7 +75,6 @@
         android:id="@+id/btn_return"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:onClick="volverMainActivity"
         android:text="@string/btn_return"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

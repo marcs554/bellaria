@@ -1,6 +1,4 @@
-package com.example.bellaria.network;
-
-import java.net.URL;
+package com.example.bellaria.services;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
