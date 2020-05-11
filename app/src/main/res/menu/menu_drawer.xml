@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/home" />
+    <item
+        android:id="@+id/misPedidos"
+        android:icon="@drawable/ic_shopping_basket_black_24dp"
+        android:title="@string/orders" />
+    <item
+        android:id="@+id/logOut"
+        android:icon="@drawable/ic_close_black_24dp"
+        android:title="@string/logout" />
+</menu>

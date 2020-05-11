@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,7 +8,7 @@
     tools:context=".Registro">
 
     <EditText
-        android:id="@+id/edt_nomEmpresa"
+        android:id="@+id/edt_registro_nomEmpresa"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -21,7 +22,7 @@
         app:layout_constraintVertical_bias="0.106" />
 
     <EditText
-        android:id="@+id/edt_localizacion"
+        android:id="@+id/edt_registro_localizacion"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -34,7 +35,7 @@
         app:layout_constraintVertical_bias="0.20" />
 
     <EditText
-        android:id="@+id/edt_email"
+        android:id="@+id/edt_registro_email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -47,7 +48,7 @@
         app:layout_constraintVertical_bias="0.31" />
 
     <EditText
-        android:id="@+id/edt_password"
+        android:id="@+id/edt_registro_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -60,10 +61,9 @@
         app:layout_constraintVertical_bias="0.43" />
 
     <Button
-        android:id="@+id/btn_signUp"
+        android:id="@+id/bttn_registro_signUp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:onClick="registro"
         android:text="@string/singUp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -72,7 +72,7 @@
         app:layout_constraintVertical_bias="0.72" />
 
     <Button
-        android:id="@+id/btn_return"
+        android:id="@+id/bttn_registro_return"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/btn_return"
@@ -83,7 +83,7 @@
         app:layout_constraintVertical_bias="0.82" />
 
     <EditText
-        android:id="@+id/edt_passwordAgain"
+        android:id="@+id/edt_registro_passwordAgain"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"

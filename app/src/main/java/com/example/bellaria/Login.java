@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bellaria.model.Clientes;
+import com.example.bellaria.reutilizacion.DialogInforme;
 import com.example.bellaria.services.ClienteService;
 import com.example.bellaria.services.EstadoConexion;
 import com.example.bellaria.services.RetrofitInstancia;
@@ -36,11 +37,13 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        usuario = (EditText) findViewById(R.id.edt_user);
-        password = (EditText) findViewById(R.id.edt_password);
-        final Button login = findViewById(R.id.btn_login);
-        final TextView signUp = (TextView) findViewById(R.id.txv_signup);
+        //Definición de componentes.
+        usuario = (EditText) findViewById(R.id.edt_login_user);
+        password = (EditText) findViewById(R.id.edt_registro_password);
+        Button login = findViewById(R.id.bttn_login_signin);
+        TextView signUp = (TextView) findViewById(R.id.txv_login_signup);
 
+        //Definición de las acciones que haran los botones.
         login.setOnClickListener(v -> login(usuario.getText().toString(),
                 password.getText().toString()));
         signUp.setOnClickListener(v -> signUp());
@@ -55,16 +58,25 @@ public class Login extends AppCompatActivity {
      */
     private void login(String usuario, String password) {
         /**
-         * Se comprobará antes si hay conexión con el servidor, si no la hay se lanzará un Toast
+         * Se comprobará antes si hay conexión con el servidor, si no la hay se lanzará un dialog
          * avisando al usuario de que no hay conexión al servidor.
          */
         if (!EstadoConexion.checkConnectionServer(url))
-            Toast.makeText(Login.this, "Servidor no disponible", Toast.LENGTH_LONG).show();
+            DialogInforme.dialogResultado(this, "Servidor no disponible.\n" +
+                    "Compruebe su conexión a internet o inténtelo más tarde.");
         else {
             ClienteService clienteService = RetrofitInstancia.retrofitllamada(url).create(ClienteService.class);
 
             Call<List<Clientes>> call = clienteService.iniciarSesion(usuario, password);
             call.enqueue(new Callback<List<Clientes>>() {
+
+                /**
+                 * Si el login es correcto la app recibirá un JSON con los datos del usuario que
+                 * serán almacenados en un array para ser posteriormente enviados al activity
+                 * "ClienteDashboard" y al mismo tiempo si pasará a dicho activity.
+                 * @param call
+                 * @param response
+                 */
                 @Override
                 public void onResponse(Call<List<Clientes>> call, Response<List<Clientes>> response) {
 
@@ -75,6 +87,12 @@ public class Login extends AppCompatActivity {
                     startActivityForResult(panelCliente, 0);
                 }
 
+                /**
+                 * En caso de que el login sea incorrecto se lanzará un toast informando al usuario
+                 * de que el usuario y contraseña son incorrectos.
+                 * @param call
+                 * @param t
+                 */
                 @Override
                 public void onFailure(Call<List<Clientes>> call, Throwable t) {
                     Toast.makeText(getApplicationContext(), "Usuario y contraseña incorrectos",
@@ -84,8 +102,9 @@ public class Login extends AppCompatActivity {
         }
     }
 
+
     /**
-     * Si el usuario acciona el TextView "Registrarse" se pasará al activity "activity_registro"
+     * Si el usuario acciona el TextView "Registrarse" se pasará al activity "activity_registro".
      */
     private void signUp() {
         Intent registrar = new Intent(this, Registro.class);

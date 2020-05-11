@@ -9,10 +9,21 @@
     <string name="nameBusiness">Nombre empresa</string>
     <string name="location">Localización</string>
     <string name="email">Email</string>
-    <string name="title_activity_cliente_dashboard">ClienteDashboard</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
-    <string name="button_logout">Desconectar</string>
+    <string name="home">Inicio</string>
+    <string name="orders">Mis pedidos</string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="drawerOpen">abrir</string>
+    <string name="drawerClose">cerrar</string>
+    <string name="buy">Pedir</string>
+    <string name="accept">aceptar</string>
+    <string name="cancel">cancelar</string>
+    <string name="cancel_order">¿Desea anular el pedido?</string>
+    <string name="product">Producto: </string>
+    <string name="quantity">Cantidad: </string>
+    <string name="amount">Importe: </string>
+    <string name="status">Estado: </string>
+    <string name="setQuantity">Introduce la cantidad</string>
+    <string name="orderOf">Pedido de </string>
+    <string name="requestedFrom">Solicitado: </string>
 
 </resources>

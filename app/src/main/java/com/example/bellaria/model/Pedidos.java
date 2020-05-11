@@ -6,16 +6,26 @@ public class Pedidos implements Serializable {
 
     private int id;
     private String fechaPedido;
-    private int cantidad;
+    private float cantidad;
     private float importe;
     private Clientes cliente;
     private Productos productos;
     private Estado estado;
 
-    public Pedidos() {
-    }
+    public Pedidos() { }
 
-    public Pedidos(int id, String fechaPedido, int cantidad, float importe, Clientes cliente, Productos productos, Estado estado) {
+    /**
+     *
+     * @param id
+     * @param fechaPedido
+     * @param cantidad
+     * @param importe
+     * @param cliente
+     * @param productos
+     * @param estado
+     */
+    public Pedidos(int id, String fechaPedido, float cantidad, float importe, Clientes cliente,
+                   Productos productos, Estado estado) {
         this.id = id;
         this.fechaPedido = fechaPedido;
         this.cantidad = cantidad;
@@ -25,59 +35,105 @@ public class Pedidos implements Serializable {
         this.estado = estado;
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    /**
+     *
+     * @return
+     */
+    public int getId() { return id; }
 
-    public String getFechaPedido() {
-        return fechaPedido;
-    }
+    /**
+     *
+     * @param id
+     */
+    public void setId(int id) { this.id = id; }
 
-    public void setFechaPedido(String fechaPedido) {
-        this.fechaPedido = fechaPedido;
-    }
+    /**
+     *
+     * @return
+     */
+    public String getFechaPedido() { return fechaPedido; }
 
-    public int getCantidad() {
-        return cantidad;
-    }
+    /**
+     *
+     * @param fechaPedido
+     */
+    public void setFechaPedido(String fechaPedido) { this.fechaPedido = fechaPedido; }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
+    /**
+     *
+     * @return
+     */
+    public float getCantidad() { return cantidad; }
 
-    public float getImporte() {
-        return importe;
-    }
+    /**
+     *
+     * @param cantidad
+     */
+    public void setCantidad(float cantidad) { this.cantidad = cantidad; }
 
-    public void setImporte(float importe) {
-        this.importe = importe;
-    }
+    /**
+     *
+     * @return
+     */
+    public float getImporte() { return importe; }
 
-    public Clientes getCliente() {
-        return cliente;
-    }
+    /**
+     *
+     * @param importe
+     */
+    public void setImporte(float importe) { this.importe = importe; }
 
-    public void setCliente(Clientes cliente) {
-        this.cliente = cliente;
-    }
+    /**
+     *
+     * @return
+     */
+    public Clientes getCliente() { return cliente; }
 
-    public Productos getProductos() {
-        return productos;
-    }
+    /**
+     *
+     * @param cliente
+     */
+    public void setCliente(Clientes cliente) { this.cliente = cliente; }
 
-    public void setProductos(Productos productos) {
-        this.productos = productos;
-    }
+    /**
+     *
+     * @return
+     */
+    public Productos getProductos() { return productos; }
 
-    public Estado getEstado() {
-        return estado;
-    }
+    /**
+     *
+     * @param productos
+     */
+    public void setProductos(Productos productos) { this.productos = productos; }
 
-    public void setEstado(Estado estado) {
-        this.estado = estado;
+    /**
+     *
+     * @return
+     */
+    public Estado getEstado() { return estado; }
+
+    /**
+     *
+     * @param estado
+     */
+    public void setEstado(Estado estado) { this.estado = estado; }
+
+    /**
+     *
+     * @return
+     */
+    @Override
+    public String toString() {
+        return "Pedidos{" +
+                "id=" + id +
+                ", fechaPedido='" + fechaPedido + '\'' +
+                ", cantidad=" + cantidad +
+                ", importe=" + importe +
+                ", cliente=" + cliente +
+                ", productos=" + productos +
+                ", estado=" + estado +
+                '}';
     }
 }

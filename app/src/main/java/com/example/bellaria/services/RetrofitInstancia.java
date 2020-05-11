@@ -7,6 +7,11 @@ public class RetrofitInstancia {
 
     private static Retrofit retrofit = null;
 
+    /**
+     *
+     * @param url
+     * @return
+     */
     public static Retrofit retrofitllamada(String url) {
 
         if(retrofit == null) {
