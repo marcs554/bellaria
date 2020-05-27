@@ -89,21 +89,12 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.ViewHolder
 
             //Al pulsar el botón aceptar
             aceptar.setOnClickListener(v1 -> {
-                if(pedidosList.get(position).getEstado().getId() < 2) {
+                if(pedidosList.get(position).getEstado().getId() < 5) {
                     /**
                      * Si el id del estado es menor que 2 se procede a entrar en la función "anularPedido"
                      * pasando por parametro el id del pedido.
                      */
                     anularPedido(pedidosList.get(position));
-                } else if(pedidosList.get(position).getEstado().getId() > 1 &&
-                        pedidosList.get(position).getEstado().getId() < 5) {
-
-                    /**
-                     * Si el id del estado es mayor que 1 pero menor que 5 se llamará a la función
-                     * dialogResultado situada en la clase DialogInforme para mostrar por pantalla un
-                     * dialog informando al usuario de que ya no es posible anular el pedido.
-                     */
-                    DialogInforme.dialogResultado(context, "Ya no es posible anular el pedido");
                 } else if(pedidosList.get(position).getEstado().getId() > 4) {
 
                     /**
