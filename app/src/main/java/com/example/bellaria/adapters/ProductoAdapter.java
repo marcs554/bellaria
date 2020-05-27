@@ -199,9 +199,8 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHo
                  */
                 @Override
                 public void onResponse(Call<List<Pedidos>> call, Response<List<Pedidos>> response) {
-                    DialogInforme.dialogResultado(context, "El pedido se realizó correctamente. Si desea anularlo hagalo " +
-                            "antes de que cambie del estado (En espera) a otro, si no no podrá anularse.\n" +
-                            "Visite el apartado \"Mis Pedidos\" para ver su pedido");
+                    DialogInforme.dialogResultado(context, "El pedido se realizó correctamente. Si desea anularlo " +
+                            "visite el apartado \"Mis Pedidos\"");
                 }
 
                 /**
