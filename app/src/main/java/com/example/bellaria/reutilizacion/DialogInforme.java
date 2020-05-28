@@ -18,12 +18,12 @@ public class DialogInforme {
      */
     public static void dialogResultado(Context context, String texto) {
         Dialog dialog = new Dialog(context);
-        dialog.setContentView(R.layout.dialog_resultado_pedido);
+        dialog.setContentView(R.layout.dialog_aviso);
         dialog.setTitle("Informe");
 
-        TextView informe = (TextView) dialog.findViewById(R.id.txv_dialog_resultado_informe);
+        TextView informe = (TextView) dialog.findViewById(R.id.txv_dialog_aviso_informe);
         informe.setText(texto);
-        Button cerrar = dialog.findViewById(R.id.bttn_dialog_informe_cerrar);
+        Button cerrar = dialog.findViewById(R.id.bttn_dialog_aviso_cerrar);
         cerrar.setOnClickListener(v -> dialog.dismiss());
 
         dialog.show();
